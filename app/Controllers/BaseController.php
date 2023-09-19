@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Storyblok;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -38,6 +39,12 @@ abstract class BaseController extends Controller
     protected $helpers = [];
 
     /**
+     * Storyblok library
+     * @var Storyblok
+     */
+    protected Storyblok $storyblok;
+
+    /**
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
@@ -54,5 +61,6 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+        $this->storyblok = new \App\Libraries\Storyblok();
     }
 }
