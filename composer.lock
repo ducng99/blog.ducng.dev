@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b82035d1a8fec2b58f29675d7daf44be",
+    "content-hash": "c2e01320944ecfc3d982dac594057e92",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -883,6 +883,57 @@
                 "source": "https://github.com/storyblok/storyblok-php-client/tree/v2.6.1"
             },
             "time": "2023-07-15T00:05:39+00:00"
+        },
+        {
+            "name": "storyblok/richtext-resolver",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/storyblok/storyblok-php-richtext-renderer.git",
+                "reference": "9141fe825b9457f91980eb8ac3ef553b673876c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/storyblok/storyblok-php-richtext-renderer/zipball/9141fe825b9457f91980eb8ac3ef553b673876c6",
+                "reference": "9141fe825b9457f91980eb8ac3ef553b673876c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.4.0",
+                "phpunit/phpunit": "^8|^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Storyblok\\RichtextRender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ademar Cardoso",
+                    "email": "ac@storyblok.com"
+                }
+            ],
+            "description": "A package allowing you to get an HTML string from the richtext field of Storyblok.",
+            "keywords": [
+                "html",
+                "render",
+                "richtext",
+                "storyblok",
+                "text"
+            ],
+            "support": {
+                "issues": "https://github.com/storyblok/storyblok-php-richtext-renderer/issues",
+                "source": "https://github.com/storyblok/storyblok-php-richtext-renderer/tree/2.2.1"
+            },
+            "time": "2023-08-07T20:25:14+00:00"
         },
         {
             "name": "symfony/cache",

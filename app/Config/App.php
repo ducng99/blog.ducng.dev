@@ -30,7 +30,7 @@ class App extends BaseConfig
      * @var string[]
      * @phpstan-var list<string>
      */
-    public array $allowedHostnames = ['blog.ducng.dev'];
+    public array $allowedHostnames = [];
 
     /**
      * --------------------------------------------------------------------------
@@ -109,7 +109,7 @@ class App extends BaseConfig
      *
      * @see https://www.php.net/manual/en/timezones.php for list of timezones supported by PHP.
      */
-    public string $appTimezone = 'Pacific/Auckland';
+    public string $appTimezone = 'UTC';
 
     /**
      * --------------------------------------------------------------------------

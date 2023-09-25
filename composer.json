@@ -12,7 +12,8 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0",
-        "storyblok/php-client": "^2.6"
+        "storyblok/php-client": "^2.6",
+        "storyblok/richtext-resolver": "^2.2"
     },
     "autoload": {
         "exclude-from-classmap": [

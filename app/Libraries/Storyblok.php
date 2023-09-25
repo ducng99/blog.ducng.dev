@@ -2,15 +2,71 @@
 
 namespace App\Libraries;
 
-use Storyblok\Client;
+use Exception;
+use \Storyblok\Client;
+use \Storyblok\RichtextRender\Resolver;
 
 class Storyblok
 {
-    public readonly Storyblok\Client $client;
+    public readonly Client $client;
+    private static ?Resolver $resolver = null;
 
     public function __construct()
     {
-        $this->client = new Client(config('storyblok.api_key'));
-        $this->client->editMode(env('CI_ENVIRONMENT') !== 'production');
+        $api_key = getenv('STORYBLOK_API_KEY');
+        if ($api_key === false)
+        {
+            throw new Exception('STORYBLOK_API_KEY is not set');
+        }
+
+        $this->client = new Client($api_key);
+        $this->client->editMode(getenv('CI_ENVIRONMENT') !== 'production');
+        $this->client->setCache('filesystem', [
+            'path' => config('Cache')->file['storePath'],
+            'default_lifetime' => getenv('CI_ENVIRONMENT') === 'production' ? 21600 : 30,
+        ]);
+    }
+
+    public static function resolver(): Resolver
+    {
+        return self::$resolver ??= new Resolver();
+    }
+
+    /**
+     * Map Storyblok component to view
+     * If the component does not match any view, an empty view will be returned
+     * @param string $component Storyblok component name
+     * @return string View name
+     */
+    public static function getViewFromComponent(string $component): string
+    {
+        return match ($component)
+        {
+            "page" => "page",
+            "post" => "post",
+            "grid" => "components/grid",
+            "featured_post" => "components/featured_post",
+            "rich_body" => "components/rich_body",
+            default => "empty",
+        };
+    }
+
+    /**
+     * Map Storyblok component to model class.
+     * If the component does not match any model, an empty base model will be returned
+     * @param string $component Storyblok component name
+     * @return string Model class name
+     */
+    public static function getModelFromComponent(string $component): string
+    {
+        return match ($component)
+        {
+            "page" => \App\Models\Page::class,
+            "post" => \App\Models\Post::class,
+            "grid" => \App\Models\Components\Grid::class,
+            "featured_post" => \App\Models\Components\FeaturedPost::class,
+            "rich_body" => \App\Models\Components\RichBody::class,
+            default => \App\Models\BaseModel::class,
+        };
     }
 }
