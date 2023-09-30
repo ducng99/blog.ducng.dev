@@ -24,7 +24,7 @@ echo $this->endSection();
 
 <?= $this->section('main') ?>
 <?= $component->_editable ?>
-<div class="md:container md:mx-auto">
+<div class="md:container md:mx-auto md:px-56">
 	<?php
 	if (is_array($component->body)) :
 		foreach ($component->body as $nestedComponent) :

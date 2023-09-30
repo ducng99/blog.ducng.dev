@@ -6,12 +6,12 @@ use App\Libraries\Storyblok;
 
 class PageController extends BaseController
 {
-    public function show(string $slug): string
+    /**
+     * @param string[] $segments
+     */
+    public function show(...$segments): string
     {
-        if (empty($slug))
-        {
-            $slug = 'home';
-        }
+        $slug = implode('/', $segments);
 
         $story = $this->storyblok->client->getStoryBySlug($slug)->getBody();
         $component = $story['story']['content'];
@@ -23,6 +23,7 @@ class PageController extends BaseController
 
         return view($viewName, [
             'component' => $componentModel,
+            'story' => $story['story'],
         ]);
     }
 }

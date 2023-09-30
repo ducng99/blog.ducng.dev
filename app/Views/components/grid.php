@@ -6,15 +6,19 @@ use App\Libraries\Storyblok;
 ?>
 
 <? if (is_array($component->body)) : ?>
-<?= $component->_editable ?>
-    <div class="grid grid-cols-<?= esc($component->num_columns, 'attr') ?>">
+    <?= $component->_editable ?>
+    <div class="grid grid-cols-1 md:grid-cols-<?= esc($component->num_columns, 'attr') ?> gap-8">
         <?
         foreach ($component->body as $nestedComponent) :
             $viewName = Storyblok::getViewFromComponent($nestedComponent->component);
         ?>
-            <div>
+            <? if ($component->wrap_item) : ?>
+                <div>
+                <? endif; ?>
                 <?= view($viewName, ['component' => $nestedComponent]) ?>
-            </div>
+                <? if ($component->wrap_item) : ?>
+                </div>
+            <? endif; ?>
         <?
         endforeach;
         ?>

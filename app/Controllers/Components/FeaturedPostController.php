@@ -15,6 +15,7 @@ class FeaturedPostController extends BaseController
 
 		return view('components/featured_post', [
 			'component' => $component,
+			'story' => $story['story'],
 			'postLoaded' => true,
 		]);
 	}

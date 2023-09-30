@@ -23,10 +23,13 @@ class Storyblok
         $this->client->editMode(getenv('CI_ENVIRONMENT') !== 'production');
         $this->client->setCache('filesystem', [
             'path' => config('Cache')->file['storePath'],
-            'default_lifetime' => getenv('CI_ENVIRONMENT') === 'production' ? 21600 : 30,
+            'default_lifetime' => getenv('CI_ENVIRONMENT') === 'production' ? 21600 : 300,
         ]);
     }
 
+    /**
+     * Rich body renderer
+     */
     public static function resolver(): Resolver
     {
         return self::$resolver ??= new Resolver();
@@ -47,6 +50,7 @@ class Storyblok
             "grid" => "components/grid",
             "featured_post" => "components/featured_post",
             "rich_body" => "components/rich_body",
+            "predefined_featured_posts" => "components/predefined_featured_posts",
             default => "empty",
         };
     }
@@ -66,6 +70,7 @@ class Storyblok
             "grid" => \App\Models\Components\Grid::class,
             "featured_post" => \App\Models\Components\FeaturedPost::class,
             "rich_body" => \App\Models\Components\RichBody::class,
+            "predefined_featured_posts" => \App\Models\Components\PredefinedFeaturedPosts::class,
             default => \App\Models\BaseModel::class,
         };
     }

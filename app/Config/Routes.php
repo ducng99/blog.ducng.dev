@@ -16,5 +16,7 @@ $routes->group('components', static function (RouteCollection $routes)
 	$routes->get('featured_post/(:uuid)', 'Components\FeaturedPostController::show/$1');
 });
 
+$routes->post('storyblok_load_story', 'StoryblokController::show');
+
 // Catch all pages
 $routes->get('/(:any)', 'PageController::show/$1');
