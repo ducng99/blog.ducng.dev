@@ -22,15 +22,12 @@ echo $this->endSection();
 
 <?= $this->section('main') ?>
 <?= $component->_editable ?>
-<div class="md:container md:mx-auto md:px-56">
+<div class="lg:container lg:mx-auto lg:max-w-5xl px-4 lg:px-0">
     <?php
-    if (is_array($component->body))
+    foreach ($component->body as $nestedComponent)
     {
-        foreach ($component->body as $nestedComponent)
-        {
-            $viewName = Storyblok::getViewFromComponent($nestedComponent->component);
-            echo view($viewName, ['component' => $nestedComponent]);
-        }
+        $viewName = Storyblok::getViewFromComponent($nestedComponent->component);
+        echo view($viewName, ['component' => $nestedComponent]);
     }
     ?>
 </div>
