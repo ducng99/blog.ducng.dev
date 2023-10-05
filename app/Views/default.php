@@ -55,6 +55,9 @@
             });
         </script>
     <? endif; ?>
+
+    <?= view_cell('\App\Controllers\Components\NavbarController::index') ?>
+
     <?= $this->renderSection('main') ?>
 </body>
 

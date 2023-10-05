@@ -51,6 +51,9 @@ class Storyblok
             "featured_post" => "components/featured_post",
             "rich_body" => "components/rich_body",
             "predefined_featured_posts" => "components/predefined_featured_posts",
+            "navbar" => "components/navbar/navbar",
+            "nav_dropdown" => "components/navbar/nav_dropdown",
+            "nav_link" => "components/navbar/nav_link",
             default => "empty",
         };
     }
@@ -71,7 +74,30 @@ class Storyblok
             "featured_post" => \App\Models\Components\FeaturedPost::class,
             "rich_body" => \App\Models\Components\RichBody::class,
             "predefined_featured_posts" => \App\Models\Components\PredefinedFeaturedPosts::class,
+            "navbar" => \App\Models\Navbar\Navbar::class,
+            "nav_dropdown" => \App\Models\Navbar\NavDropdown::class,
+            "nav_link" => \App\Models\Navbar\NavLink::class,
             default => \App\Models\BaseModel::class,
+        };
+    }
+
+    /**
+     * Get URL from Storyblok link based on its type
+     * @param array $link Storyblok link object
+     * @return string URL
+     */
+    public static function getURLFromLink(array $link): string
+    {
+        if (!isset($link['linktype']))
+        {
+            return '#';
+        }
+
+        return match ($link['linktype'])
+        {
+            'url' => $link['url'],
+            'story' => base_url($link['cached_url'] === 'home' ? '' : $link['cached_url']),
+            default => '#',
         };
     }
 }
