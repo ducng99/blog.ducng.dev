@@ -1,8 +1,8 @@
 <?php
 
-/** @var \App\Models\Page $component */
-
 use App\Libraries\Storyblok;
+
+/** @var \App\Models\Page $component */
 
 ?>
 

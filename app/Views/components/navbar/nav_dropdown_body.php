@@ -1,11 +1,11 @@
 <?php
 
+use App\Libraries\Storyblok;
+
 /**
  * This file is included by nav_dropdown.php which passthrough the component
  * @var App\Models\Navbar\NavDropdown $component
  */
-
-use App\Libraries\Storyblok;
 ?>
 <div class="dropdown_body">
     <?
@@ -17,6 +17,7 @@ use App\Libraries\Storyblok;
                  */
                 $url = Storyblok::getURLFromLink($dropdown_item->link);
     ?>
+                <?= $dropdown_item->_editable ?>
                 <a href="<?= esc($url, 'attr') ?>">
                     <div class="dropdown_item">
                         <?= esc($dropdown_item->name) ?>
@@ -30,6 +31,7 @@ use App\Libraries\Storyblok;
                  */
                 $url = Storyblok::getURLFromLink($dropdown_item->link);
             ?>
+                <?= $dropdown_item->_editable ?>
                 <div class="nested_dropdown">
                     <a href="<?= esc($url, 'attr') ?>">
                         <div class="dropdown_item">

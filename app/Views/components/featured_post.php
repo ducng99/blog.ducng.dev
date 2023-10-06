@@ -1,7 +1,7 @@
 <? if (isset($postLoaded) && $postLoaded) : ?>
     <?
     /**
- * Component after HTMX load
+     * Component after HTMX load
      * @var \App\Models\Post $component
      * @var array $story
      */

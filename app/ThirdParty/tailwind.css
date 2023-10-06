@@ -36,7 +36,7 @@
   }
 
   .nav_dropdown {
-    @apply relative inline-block text-left;
+    @apply relative;
 
     .dropdown_btn {
       &::after {
@@ -49,16 +49,22 @@
     }
 
     .dropdown_body {
+      @apply absolute left-0 top-full z-10;
+      @apply transition;
+      @apply opacity-0 h-0 overflow-hidden;
+
       .nested_dropdown {
+        @apply relative;
+
         > * > .dropdown_item {
+          @apply flex items-center gap-2;
+
           &::after {
             content: "";
             letter-spacing: 0.5em;
             font-size: 0.5em;
             transform: rotate(-90deg);
           }
-
-          @apply flex items-center gap-2;
         }
 
         & > .dropdown_body {
@@ -68,17 +74,11 @@
         &:hover > .dropdown_body {
           @apply opacity-100 h-full overflow-visible;
         }
-
-        @apply relative;
       }
 
       .dropdown_item {
         @apply bg-emerald-900 text-white hover:text-accent font-normal whitespace-nowrap px-5 py-2;
       }
-
-      @apply absolute left-0 top-full z-10;
-      @apply transition;
-      @apply opacity-0 h-0 overflow-hidden;
     }
 
     &:hover > .dropdown_body {

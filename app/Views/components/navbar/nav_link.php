@@ -1,10 +1,10 @@
 <?php
 
+use App\Libraries\Storyblok;
+
 /**
  * @var App\Models\Navbar\NavLink $component
  */
-
-use App\Libraries\Storyblok;
 
 $url = Storyblok::getURLFromLink($component->link);
 ?>

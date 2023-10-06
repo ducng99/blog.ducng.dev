@@ -1,8 +1,8 @@
 <?php
 
-/** @var \App\Models\Components\Grid $component */
-
 use App\Libraries\Storyblok;
+
+/** @var \App\Models\Components\Grid $component */
 ?>
 
 <? if (is_array($component->body)) : ?>
