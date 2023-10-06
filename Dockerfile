@@ -1,12 +1,52 @@
+FROM node:lts-alpine as node-builder
+
+WORKDIR /app
+COPY package.json package-lock.json postcss.config.js tailwind.config.js app/ThirdParty/* ./
+
+RUN npm install && \
+    npx tailwindcss -i ./tailwind.css -o ./styles.css --postcss postcss.config.js --minify
+
+FROM composer:2 AS php-builder
+
+WORKDIR /app
+COPY composer.json composer.lock ./
+
+RUN composer install --no-interaction --no-dev --ignore-platform-reqs
+
 FROM php:8.2-apache
 
-COPY . /var/www/html
+WORKDIR /var/www/html
+
+COPY . .
+COPY --from=node-builder /app/styles.css ./public/assets/css/styles.css
+COPY --from=php-builder /app/vendor ./vendor
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions intl
 
-RUN docker-php-ext-enable opcache \
-    && echo "date.timezone = Pacific/Auckland" > $PHP_INI_DIR/conf.d/timezone.ini \
-    && echo "opcache.enable=1" > $PHP_INI_DIR/conf.d/opcache.ini
+RUN docker-php-ext-install -j "$(nproc)" opcache
+RUN set -ex; \
+    { \
+        echo "upload_max_filesize = 32M"; \
+        echo "post_max_size = 32M"; \
+        echo "; Configure Opcache for Containers"; \
+        echo "opcache.enable = On"; \
+        echo "opcache.validate_timestamps = Off"; \
+        echo "; Configure Opcache Memory (Application-specific)"; \
+        echo "opcache.memory_consumption = 32"; \
+    } > $PHP_INI_DIR/conf.d/opcache.ini \
+    && echo "date.timezone = Pacific/Auckland" > $PHP_INI_DIR/conf.d/timezone.ini
+
+# Hides Apache version from HTTP headers
+# Adds Apache site configuration
+RUN echo "ServerTokens Prod" >> /etc/apache2/apache2.conf \
+    && mv ./apache_site.conf /etc/apache2/sites-available/000-default.conf 
+
+# Switch to the production php.ini for production operations.
+# https://github.com/docker-library/docs/blob/master/php/README.md#configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+RUN a2enmod rewrite \
+    a2enmod actions

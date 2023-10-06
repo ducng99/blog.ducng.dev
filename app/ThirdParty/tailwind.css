@@ -45,13 +45,13 @@
     @apply relative;
 
     .dropdown_btn {
+      @apply flex items-center gap-2;
+
       &::after {
         content: "";
         letter-spacing: 0.5em;
         font-size: 0.5em;
       }
-
-      @apply flex items-center gap-2;
     }
 
     .dropdown_body {
@@ -62,6 +62,7 @@
       .nested_dropdown {
         @apply relative;
 
+        /* I hate this */
         > * > .dropdown_item {
           @apply flex items-center gap-2;
 
@@ -73,12 +74,8 @@
           }
         }
 
-        & > .dropdown_body {
+        > .dropdown_body {
           @apply inline-block top-0 left-full;
-        }
-
-        &:hover > .dropdown_body {
-          @apply opacity-100 h-full overflow-visible;
         }
       }
 
@@ -87,7 +84,8 @@
       }
     }
 
-    &:hover > .dropdown_body {
+    &:hover > .dropdown_body,
+    & .dropdown_body .nested_dropdown:hover .dropdown_body:first-of-type {
       @apply opacity-100 h-full overflow-visible;
     }
   }
