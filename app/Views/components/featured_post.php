@@ -10,7 +10,7 @@
     <div class="bg-primary h-64 rounded-md flex flex-col">
         <div class="text-black pt-5 px-7 mb-auto">
             <h3 class="text-anchor font-bold mb-6">
-                <a href="<?= base_url($story['full_slug']) ?>"><?= esc($component->title) ?></a>
+                <a href="<?= base_url($story['full_slug']) ?>"><?= esc($story['name']) ?></a>
             </h3>
             <div class="font-serif"><?= esc($component->summary) ?></div>
             <div class="text-anchor text-sm mt-6">

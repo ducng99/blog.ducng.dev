@@ -2,11 +2,19 @@
 
 use App\Libraries\Storyblok;
 
-/** @var \App\Models\Page $component */
-
+/**
+ * @var \App\Models\Post $component
+ * @var array $story
+ */
 ?>
 
 <?= $this->extend('default') ?>
+
+<?
+echo $this->section('title');
+echo esc($story['name']);
+echo $this->endSection();
+?>
 
 <?php
 echo $this->section('meta_tags');

@@ -4,7 +4,6 @@ namespace App\Models;
 
 class Post extends BaseModel
 {
-    public string $title = '';
     public string $created_at = '';
     public string $summary = '';
 

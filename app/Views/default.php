@@ -5,14 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= $this->renderSection('meta_tags') ?>
-    <title>Thomas Nguyen junk yard</title>
+    <title>
+        <? if (!empty(uri_string())) : ?>
+            <?= $this->renderSection('title', true) ?> -
+        <? endif; ?>
+        Thomas Nguyen junk yard
+    </title>
     <link rel="icon" href="<?= base_url("logo.svg") ?>" type="image/svg+xml" />
+    <link rel="canonical" href="<?= base_url(uri_string()) ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <link href="<?= base_url("assets/css/styles.css") ?>" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9"></script>
 
     <?
     // Storyblok Bridge
