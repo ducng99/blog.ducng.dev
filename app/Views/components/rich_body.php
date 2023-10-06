@@ -15,8 +15,8 @@ $text_align = match ($component->text_align)
     default => 'text-left',
 };
 
-$paddingsCSS = 'padding-top: ' . $component->padding_top . '; padding-bottom: ' . $component->padding_bottom . '; padding-left: ' . $component->padding_left . '; padding-right: ' . $component->padding_right . ';';
-$marginsCSS = 'margin-top: ' . $component->margin_top . '; margin-bottom: ' . $component->margin_bottom . '; margin-left: ' . $component->margin_left . '; margin-right: ' . $component->margin_right . ';';
+$paddingsCSS = 'padding: ' . $component->padding_top . ' ' . $component->padding_right . ' ' . $component->padding_bottom . ' ' . $component->padding_left . ';';
+$marginsCSS = 'margin: ' . $component->margin_top . ' ' . $component->margin_right . ' ' . $component->margin_bottom . ' ' . $component->margin_left . ';';
 
 ?>
 <div class="w-full <?= $text_align ?>" style="<?= esc($paddingsCSS, 'attr') ?><?= esc($marginsCSS, 'attr') ?>">
