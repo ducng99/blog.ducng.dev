@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Navbar;
+namespace App\Models\Components\Navbar;
 
 use App\Models\BaseModel;
 

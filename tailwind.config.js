@@ -22,5 +22,6 @@ module.exports = {
       variants: ['md']
     }
   ],
+  darkMode: 'class',
 }
 

@@ -1,0 +1,58 @@
+.nav_item {
+  @apply h-full px-5 py-6 text-lg font-bold shadow-accent transition;
+
+  &:hover,
+  &.active {
+    @apply text-accent;
+    box-shadow: inset 0 -5px 0 0 var(--tw-shadow-color);
+  }
+}
+
+.nav_dropdown {
+  @apply relative;
+
+  .dropdown_btn {
+    @apply flex items-center gap-2;
+
+    &::after {
+      content: "";
+      letter-spacing: 0.5em;
+      font-size: 0.5em;
+    }
+  }
+
+  .dropdown_body {
+    @apply absolute left-0 top-full z-10;
+    @apply transition;
+    @apply opacity-0 h-0 overflow-hidden;
+
+    .nested_dropdown {
+      @apply relative;
+
+      /* I hate this */
+      > * > .dropdown_item {
+        @apply flex items-center gap-2;
+
+        &::after {
+          content: "";
+          letter-spacing: 0.5em;
+          font-size: 0.5em;
+          transform: rotate(-90deg);
+        }
+      }
+
+      > .dropdown_body {
+        @apply inline-block top-0 left-full;
+      }
+    }
+
+    .dropdown_item {
+      @apply bg-emerald-900 text-white hover:text-accent font-normal whitespace-nowrap px-5 py-2;
+    }
+  }
+
+  &:hover > .dropdown_body,
+  & .dropdown_body .nested_dropdown:hover .dropdown_body:first-of-type {
+    @apply opacity-100 h-full overflow-visible;
+  }
+}

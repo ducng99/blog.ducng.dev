@@ -1,6 +1,6 @@
 .placeholder-loading {
-  position: relative;
-  overflow: hidden;
+  @apply rounded relative overflow-hidden;
+  @apply dark:bg-secondary;
 }
 
 .placeholder-loading::after {
