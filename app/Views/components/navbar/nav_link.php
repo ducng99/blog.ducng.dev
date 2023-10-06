@@ -7,9 +7,10 @@ use App\Libraries\Storyblok;
  */
 
 $url = Storyblok::getURLFromLink($component->link);
+$active = base_url(uri_string()) == $url ? 'active' : '';
 ?>
 
 <?= $component->_editable ?>
-<a href="<?= esc($url, 'attr') ?>" class="nav_item">
-    <?= esc($component->name) ?>
+<a href="<?= esc($url, 'attr') ?>" class="nav_item <?= $active ?>">
+  <?= esc($component->name) ?>
 </a>

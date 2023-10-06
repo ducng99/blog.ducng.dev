@@ -32,7 +32,13 @@
 
 @layer components {
   .nav_item {
-    @apply h-full px-5 py-6 text-lg font-bold hover:text-accent hover:shadow-[inset_0_-5px_0_0_var(--tw-shadow-color)] shadow-accent transition;
+    @apply h-full px-5 py-6 text-lg font-bold shadow-accent transition;
+
+    &:hover,
+    &.active {
+      @apply text-accent;
+      box-shadow: inset 0 -5px 0 0 var(--tw-shadow-color);
+    }
   }
 
   .nav_dropdown {
