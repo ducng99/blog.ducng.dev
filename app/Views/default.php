@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="utf-8">
@@ -65,6 +65,8 @@
     <?= view_cell('\App\Controllers\Components\NavbarController::index') ?>
 
     <?= $this->renderSection('main') ?>
+
+    <?= view_cell('\App\Controllers\Components\FooterController::index') ?>
 </body>
 
 </html>

@@ -54,6 +54,7 @@ class Storyblok
             "navbar" => "components/navbar/navbar",
             "nav_dropdown" => "components/navbar/nav_dropdown",
             "nav_link" => "components/navbar/nav_link",
+            "footer" => "components/footer",
             default => "empty",
         };
     }
@@ -74,9 +75,10 @@ class Storyblok
             "featured_post" => \App\Models\Components\FeaturedPost::class,
             "rich_body" => \App\Models\Components\RichBody::class,
             "predefined_featured_posts" => \App\Models\Components\PredefinedFeaturedPosts::class,
-            "navbar" => \App\Models\Navbar\Navbar::class,
-            "nav_dropdown" => \App\Models\Navbar\NavDropdown::class,
-            "nav_link" => \App\Models\Navbar\NavLink::class,
+            "navbar" => \App\Models\Components\Navbar\Navbar::class,
+            "nav_dropdown" => \App\Models\Components\Navbar\NavDropdown::class,
+            "nav_link" => \App\Models\Components\Navbar\NavLink::class,
+            "footer" => \App\Models\Components\Footer::class,
             default => \App\Models\BaseModel::class,
         };
     }
