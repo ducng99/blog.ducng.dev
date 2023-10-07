@@ -1,10 +1,11 @@
 FROM node:lts-alpine as node-builder
 
-WORKDIR /app
-COPY package.json package-lock.json postcss.config.js tailwind.config.js app/ThirdParty/* ./
+WORKDIR /build
 
-RUN npm install && \
-    npx tailwindcss -i ./tailwind.css -o ./styles.css --postcss postcss.config.js --minify
+RUN --mount=target=. \
+    mkdir /app && \
+    npm install && \
+    npx tailwindcss -i ./app/ThirdParty/tailwind.css -o /app/styles.css --postcss ./postcss.config.js --minify
 
 FROM composer:2 AS php-builder
 
