@@ -3,8 +3,9 @@
 namespace App\Libraries;
 
 use Exception;
-use \Storyblok\Client;
-use \Storyblok\RichtextRender\Resolver;
+use Storyblok\Client;
+use Storyblok\RichtextRender\Resolver;
+use Storyblok\RichtextRender\Schema;
 
 class Storyblok
 {
@@ -32,7 +33,38 @@ class Storyblok
      */
     public static function resolver(): Resolver
     {
-        return self::$resolver ??= new Resolver();
+        if (self::$resolver === null)
+        {
+            $schema = new \Storyblok\RichtextRender\Schema();
+            $marks = $schema->getMarks();
+            $nodes = $schema->getNodes();
+
+            $nodes['blok'] = static function (array $node): array
+            {
+                $bloks = $node['attrs']['body'];
+                $html = '';
+
+                foreach ($bloks as $component)
+                {
+                    $componentModelClass = self::getModelFromComponent($component['component']);
+                    $componentModel = new $componentModelClass($component);
+
+                    $viewName = self::getViewFromComponent($component['component']);
+
+                    $html .= view($viewName, [
+                        'component' => $componentModel,
+                    ]);
+                }
+
+                return [
+                    'html' => $html
+                ];
+            };
+
+            self::$resolver = new Resolver(['marks' => $marks, 'nodes' => $nodes]);
+        }
+
+        return self::$resolver;
     }
 
     /**
