@@ -47,7 +47,7 @@
     }
 
     .dropdown_item {
-      @apply bg-emerald-900 text-white hover:text-accent font-normal whitespace-nowrap px-5 py-2;
+      @apply bg-emerald-900 text-primary hover:text-accent font-normal whitespace-nowrap px-5 py-2;
     }
   }
 

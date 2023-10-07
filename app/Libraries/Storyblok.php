@@ -87,6 +87,7 @@ class Storyblok
             "nav_dropdown" => "components/navbar/nav_dropdown",
             "nav_link" => "components/navbar/nav_link",
             "footer" => "components/footer",
+            "bootstrap_icon" => "components/bootstrap_icon",
             default => "empty",
         };
     }
@@ -111,6 +112,7 @@ class Storyblok
             "nav_dropdown" => \App\Models\Components\Navbar\NavDropdown::class,
             "nav_link" => \App\Models\Components\Navbar\NavLink::class,
             "footer" => \App\Models\Components\Footer::class,
+            "bootstrap_icon" => \App\Models\Components\BootstrapIcon::class,
             default => \App\Models\BaseModel::class,
         };
     }
@@ -124,14 +126,15 @@ class Storyblok
     {
         if (!isset($link['linktype']))
         {
-            return '#';
+            return '';
         }
 
         return match ($link['linktype'])
         {
             'url' => $link['url'],
             'story' => base_url($link['cached_url'] === 'home' ? '' : $link['cached_url']),
-            default => '#',
+            'email' => 'mailto:' . $link['email'],
+            default => '',
         };
     }
 }
