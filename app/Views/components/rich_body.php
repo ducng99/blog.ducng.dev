@@ -19,6 +19,6 @@ $paddingsCSS = 'padding: ' . $component->padding_top . ' ' . $component->padding
 $marginsCSS = 'margin: ' . $component->margin_top . ' ' . $component->margin_right . ' ' . $component->margin_bottom . ' ' . $component->margin_left . ';';
 
 ?>
-<div class="w-full <?= $text_align ?>" style="<?= esc($paddingsCSS, 'attr') ?><?= esc($marginsCSS, 'attr') ?>">
+<div class="w-full prose dark:prose-invert max-w-none <?= $text_align ?>" style="<?= esc($paddingsCSS, 'attr') ?><?= esc($marginsCSS, 'attr') ?>">
     <?= Storyblok::resolver()->render($component->body) ?>
 </div>

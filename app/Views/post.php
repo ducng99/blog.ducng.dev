@@ -33,7 +33,7 @@ echo $this->endSection();
         <?= esc($story['name']) ?>
     </h1>
 
-    <div class="mt-0">
+    <div class="mb-4">
         &lt;posted date=&quot;<?= date('Y-m-d', strtotime($component->created_at)) ?>&quot; time=&quot;<?= date('H:i', strtotime($component->created_at)) ?>&quot; /&gt;
     </div>
 

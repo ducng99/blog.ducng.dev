@@ -14,10 +14,10 @@ $marginsCSS = 'margin: ' . $component->margin_top . ' ' . $component->margin_rig
 
 <?= $component->_editable ?>
 <? if (!empty($url)) : ?>
-    <a href="<?= esc($url, 'attr') ?>" <? if (!empty($component->link['target'])) : ?> target="<?= esc($component->link['target'], 'attr') ?>" <? endif; ?>>
+    <a class="not-prose" href="<?= esc($url, 'attr') ?>" <? if (!empty($component->link['target'])) : ?> target="<?= esc($component->link['target'], 'attr') ?>" <? endif; ?>>
     <? endif; ?>
     <span style="<?= esc($marginsCSS, 'attr') ?>;<?= esc($colorCSS, 'attr') ?>;<?= esc($fontSizeCSS, 'attr') ?>">
-            <i class="bi bi-<?= esc($component->icon, 'attr') ?><? if (!empty($url)) : ?> hover:text-accent<? endif; ?>"></i>
+        <i class="bi bi-<?= esc($component->icon, 'attr') ?><? if (!empty($url)) : ?> hover:text-accent<? endif; ?>"></i>
     </span>
     <? if (!empty($url)) : ?>
     </a>

@@ -8,6 +8,18 @@ module.exports = {
         'secondary': '#2f2f30',
         'accent': '#69c545',
         'anchor': '#468630',
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '',
+            },
+            'code::after': {
+              content: '',
+            },
+          }
+        },
       }
     },
     fontFamily: {
@@ -15,7 +27,9 @@ module.exports = {
       'mono': ['Ubuntu Mono', 'monospace'],
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
   safelist: [
     {
       pattern: /grid-cols-\d/,

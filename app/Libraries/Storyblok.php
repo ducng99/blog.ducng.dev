@@ -5,7 +5,6 @@ namespace App\Libraries;
 use Exception;
 use Storyblok\Client;
 use Storyblok\RichtextRender\Resolver;
-use Storyblok\RichtextRender\Schema;
 
 class Storyblok
 {
