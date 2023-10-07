@@ -5,7 +5,7 @@ COPY . .
 
 RUN mkdir /dist && \
     npm install && \
-    npx tailwindcss -i ./app/ThirdParty/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js --minify
+    npx tailwindcss -i ./app/ThirdParty/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js
 
 FROM composer:2 AS php-builder
 
@@ -29,6 +29,7 @@ RUN set -ex; \
         echo "upload_max_filesize = 32M"; \
         echo "post_max_size = 32M"; \
         echo "short_open_tag = On"; \
+        echo "expose_php = Off"; \
         echo "; Configure Opcache for Containers"; \
         echo "opcache.enable = On"; \
         echo "opcache.validate_timestamps = Off"; \
