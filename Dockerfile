@@ -1,11 +1,11 @@
 FROM node:lts-alpine as node-builder
 
 WORKDIR /build
+COPY . .
 
-RUN --mount=target=. \
-    mkdir /app && \
+RUN mkdir /dist && \
     npm install && \
-    npx tailwindcss -i ./app/ThirdParty/tailwind.css -o /app/styles.css --postcss ./postcss.config.js --minify
+    npx tailwindcss -i ./app/ThirdParty/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js --minify
 
 FROM composer:2 AS php-builder
 
@@ -49,5 +49,5 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN a2enmod rewrite actions
 
 COPY --chown=www-data:www-data . .
-COPY --chown=www-data:www-data --from=node-builder /app/styles.css ./public/assets/css/styles.css
+COPY --chown=www-data:www-data --from=node-builder /dist/styles.css ./public/assets/css/styles.css
 COPY --chown=www-data:www-data --from=php-builder /app/vendor ./vendor
