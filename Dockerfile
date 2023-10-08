@@ -1,11 +1,11 @@
 FROM node:lts-alpine as node-builder
 
 WORKDIR /build
-COPY . .
+COPY ./styles ./styles
+COPY package.json package-lock.json tailwind.config.js postcss.config.js ./
 
-RUN mkdir /dist && \
-    npm install && \
-    npx tailwindcss -i ./app/ThirdParty/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js
+RUN npm install && \
+    npx tailwindcss -i ./styles/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js
 
 FROM composer:2 AS php-builder
 
@@ -26,17 +26,20 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
 RUN docker-php-ext-install -j "$(nproc)" opcache
 RUN set -ex; \
     { \
-        echo "upload_max_filesize = 32M"; \
-        echo "post_max_size = 32M"; \
-        echo "short_open_tag = On"; \
-        echo "expose_php = Off"; \
         echo "; Configure Opcache for Containers"; \
         echo "opcache.enable = On"; \
         echo "opcache.validate_timestamps = Off"; \
         echo "; Configure Opcache Memory (Application-specific)"; \
         echo "opcache.memory_consumption = 32"; \
-    } > $PHP_INI_DIR/conf.d/opcache.ini \
-    && echo "date.timezone = Pacific/Auckland" > $PHP_INI_DIR/conf.d/timezone.ini
+    } > $PHP_INI_DIR/conf.d/opcache.ini && \
+    set -ex; \
+    { \
+        echo "upload_max_filesize = 32M"; \
+        echo "post_max_size = 32M"; \
+        echo "short_open_tag = On"; \
+        echo "expose_php = Off"; \
+        echo "date.timezone = Pacific/Auckland"; \
+    } > $PHP_INI_DIR/conf.d/custom.ini
 
 # Hides Apache version from HTTP headers
 # Change Apache DirectoryRoot to public
@@ -50,5 +53,5 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN a2enmod rewrite actions
 
 COPY --chown=www-data:www-data . .
-COPY --chown=www-data:www-data --from=node-builder /dist/styles.css ./public/assets/css/styles.css
 COPY --chown=www-data:www-data --from=php-builder /app/vendor ./vendor
+COPY --chown=www-data:www-data --from=node-builder /dist/styles.css ./public/assets/css/styles.css
