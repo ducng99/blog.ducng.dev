@@ -12,6 +12,10 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            code: {
+              fontWeight: 'inherit',
+              fontSize: 'inherit',
+            },
             'code::before': {
               content: '',
             },
