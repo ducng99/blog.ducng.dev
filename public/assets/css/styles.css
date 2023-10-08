@@ -1513,6 +1513,52 @@ code {
   opacity: 1;
 }
 
+.carousel-cell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.flickity-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(47 47 48 / var(--tw-bg-opacity));
+}
+
+.flickity-button:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(47 47 48 / var(--tw-bg-opacity));
+}
+
+:is(.dark .flickity-button) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 237 237 / var(--tw-bg-opacity));
+}
+
+:is(.dark .flickity-button:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 237 237 / var(--tw-bg-opacity));
+}
+
+.flickity-button {
+  --tw-text-opacity: 1;
+  color: rgb(237 237 237 / var(--tw-text-opacity));
+}
+
+:is(.dark .flickity-button) {
+  --tw-text-opacity: 1;
+  color: rgb(47 47 48 / var(--tw-text-opacity));
+}
+
+.flickity-page-dots {
+  position: static;
+  margin-top: 1rem;
+}
+
+:is(.dark .flickity-page-dots .dot) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 237 237 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:prose-invert) {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);

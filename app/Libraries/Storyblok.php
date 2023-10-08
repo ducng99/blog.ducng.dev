@@ -87,6 +87,7 @@ class Storyblok
             "nav_link" => "components/navbar/nav_link",
             "footer" => "components/footer",
             "bootstrap_icon" => "components/bootstrap_icon",
+            "images_carousel" => "components/images_carousel",
             default => "empty",
         };
     }
@@ -112,6 +113,7 @@ class Storyblok
             "nav_link" => \App\Models\Components\Navbar\NavLink::class,
             "footer" => \App\Models\Components\Footer::class,
             "bootstrap_icon" => \App\Models\Components\BootstrapIcon::class,
+            "images_carousel" => \App\Models\Components\ImagesCarousel::class,
             default => \App\Models\BaseModel::class,
         };
     }

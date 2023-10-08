@@ -1,0 +1,18 @@
+.carousel-cell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.flickity-button {
+  @apply bg-secondary hover:bg-secondary dark:hover:bg-primary dark:bg-primary;
+  @apply text-primary dark:text-secondary;
+}
+
+.flickity-page-dots {
+  @apply static mt-4;
+
+  .dot {
+    @apply dark:bg-primary;
+  }
+}
