@@ -43,7 +43,7 @@
     </script>
 </head>
 
-<body class="bg-secondary text-primary font-mono">
+<body class="bg-secondary text-primary font-mono" hx-indicator="#progress-indicator">
     <? if (ENVIRONMENT !== 'production') : ?>
         <script>
             window.addEventListener('load', () => {
@@ -79,10 +79,10 @@
         </script>
     <? endif; ?>
 
+    <div id="progress-indicator"></div>
+
     <?= view_cell('\App\Controllers\Components\NavbarController::index') ?>
-
     <? $this->renderSection('main') ?>
-
     <?= view_cell('\App\Controllers\Components\FooterController::index') ?>
 </body>
 

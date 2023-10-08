@@ -7,7 +7,7 @@
      */
     ?>
     <?= $component->_editable ?>
-    <div class="bg-primary dark:bg-neutral-800 h-64 rounded-md flex flex-col">
+    <div class="bg-primary dark:bg-neutral-800 h-64 rounded-md flex flex-col" hx-boost="true">
         <div class="pt-5 px-7 mb-auto">
             <div class="text-xl text-anchor dark:text-accent font-bold mb-6">
                 <a href="<?= base_url($story['full_slug']) ?>"><?= esc($story['name']) ?></a>
@@ -31,7 +31,7 @@
      */
     ?>
     <?= $component->_editable ?>
-    <div class="bg-primary dark:bg-neutral-800 h-64 rounded-md flex flex-col" hx-get="<?= base_url('components/featured_post/' . $component->post) ?>" hx-trigger="revealed" hx-swap="outerHTML">
+    <div class="bg-primary dark:bg-neutral-800 h-64 rounded-md flex flex-col" hx-get="<?= base_url('components/featured_post/' . $component->post) ?>" hx-trigger="revealed" hx-swap="outerHTML" hx-indicator="this">
         <div class="pt-5 px-7 mb-auto">
             <div class="text-xl mb-6 placeholder-loading bg-gray-300 w-32">&nbsp;</div>
             <div class="mb-1 placeholder-loading bg-gray-300 w-48">&nbsp;</div>

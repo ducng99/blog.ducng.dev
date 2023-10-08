@@ -1568,6 +1568,42 @@ code {
   background-color: rgb(237 237 237 / var(--tw-bg-opacity));
 }
 
+#progress-indicator {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+  height: 0.25rem;
+  width: 100vw;
+  overflow: hidden;
+  opacity: 0;
+  background: linear-gradient(
+    -90deg,
+    transparent,
+    transparent,
+    #69c545,
+    transparent,
+    transparent
+  );
+  background-size: 400% 100%;
+  transition: opacity 0.3s ease-out;
+}
+
+#progress-indicator.htmx-request {
+  animation: gradient 1.5s linear infinite;
+  opacity: 1;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 100% 0%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 :is(.dark .dark\:prose-invert) {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);

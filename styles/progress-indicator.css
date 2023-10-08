@@ -1,0 +1,29 @@
+#progress-indicator {
+  @apply w-screen h-1 overflow-hidden fixed top-0 left-0 z-50;
+
+  opacity: 0;
+  background: linear-gradient(
+    -90deg,
+    transparent,
+    transparent,
+    theme(colors.accent),
+    transparent,
+    transparent
+  );
+  background-size: 400% 100%;
+  transition: opacity 0.3s ease-out;
+
+  &.htmx-request {
+    animation: gradient 1.5s linear infinite;
+    opacity: 1;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
