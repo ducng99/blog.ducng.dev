@@ -12,7 +12,7 @@
             <div class="text-xl text-anchor dark:text-accent font-bold mb-6">
                 <a href="<?= base_url($story['full_slug']) ?>"><?= esc($story['name']) ?></a>
             </div>
-            <div class="font-serif"><?= esc($component->summary) ?></div>
+            <div class="font-serif text-black dark:text-primary"><?= esc($component->summary) ?></div>
             <div class="text-anchor dark:text-accent text-sm mt-6">
                 <a href="<?= base_url($story['full_slug']) ?>">&gt; checkout</a>
             </div>
