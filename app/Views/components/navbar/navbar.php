@@ -6,7 +6,7 @@
 ?>
 
 <?= $component->_editable ?>
-<div class="w-screen">
+<div class="w-full">
     <div class="lg:container lg:mx-auto lg:max-w-5xl px-4 lg:px-0 flex items-center py-2">
         <a class="flex items-center gap-x-4 mr-auto" href="<?= base_url() ?>" title="Home">
             <? if (!empty($component->logo['filename'])) : ?>
