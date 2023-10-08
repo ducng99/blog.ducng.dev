@@ -29,7 +29,7 @@ echo $this->endSection();
 <?= $this->section('main') ?>
 <?= $component->_editable ?>
 <div class="lg:container lg:mx-auto lg:max-w-5xl px-4 lg:px-0">
-    <h1 class="text-8xl text-center my-24">
+    <h1 class="text-8xl font-bold text-center my-24">
         <?= esc($story['name']) ?>
     </h1>
 
