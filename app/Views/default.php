@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= $this->renderSection('meta_tags') ?>
+    <? $this->renderSection('meta_tags') ?>
     <title>
         <? if (!empty(uri_string())) : ?>
-            <?= $this->renderSection('title', true) ?> -
+            <? $this->renderSection('title', true) ?> -
         <? endif; ?>
         Thomas Nguyen junk yard
     </title>
@@ -32,40 +32,42 @@
 <body class="bg-secondary text-primary font-mono">
     <? if (ENVIRONMENT !== 'production') : ?>
         <script>
-            const storyblokInstance = new window.StoryblokBridge()
-            storyblokInstance.on(['published', 'change'], () => {
-                // reload page if save or publish is clicked
-                window.location.reload(true)
-            });
+            window.addEventListener('load', () => {
+                const storyblokInstance = new StoryblokBridge()
+                storyblokInstance.on(['published', 'change'], () => {
+                    // reload page if save or publish is clicked
+                    window.location.reload(true)
+                });
 
-            storyblokInstance.on('input', (event) => {
-                // Access currently changed but not yet saved content via:
-                const storyJson = JSON.stringify(event.story);
+                storyblokInstance.on('input', (event) => {
+                    // Access currently changed but not yet saved content via:
+                    const storyJson = JSON.stringify(event.story);
 
-                // Get updated HTML
-                fetch("<?= base_url('storyblok_load_story') ?>", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: storyJson,
-                    })
-                    .then(response => response.text())
-                    .then((data) => {
-                        // Update the page
-                        document.body.parentElement.innerHTML = data;
-                        htmx.process(document.body);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
+                    // Get updated HTML
+                    fetch("<?= base_url('storyblok_load_story') ?>", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: storyJson,
+                        })
+                        .then(response => response.text())
+                        .then((data) => {
+                            // Update the page
+                            document.body.parentElement.innerHTML = data;
+                            htmx.process(document.body);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                });
             });
         </script>
     <? endif; ?>
 
     <?= view_cell('\App\Controllers\Components\NavbarController::index') ?>
 
-    <?= $this->renderSection('main') ?>
+    <? $this->renderSection('main') ?>
 
     <?= view_cell('\App\Controllers\Components\FooterController::index') ?>
 </body>
