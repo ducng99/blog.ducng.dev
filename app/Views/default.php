@@ -30,6 +30,17 @@
     ?>
         <script src="//app.storyblok.com/f/storyblok-v2-latest.js" type="text/javascript"></script>
     <? endif; ?>
+    <script>
+        window.onThemeChange = function() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        window.onThemeChange();
+    </script>
 </head>
 
 <body class="bg-secondary text-primary font-mono">

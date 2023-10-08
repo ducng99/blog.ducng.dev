@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var App\Models\Navbar\Navbar $component
+ * @var App\Models\Components\Navbar\Navbar $component
  */
 ?>
 
@@ -31,6 +31,9 @@
                 }
             }
             ?>
+        </div>
+        <div>
+            <?= $this->include('components/navbar/theme_toggle') ?>
         </div>
     </div>
 </div>

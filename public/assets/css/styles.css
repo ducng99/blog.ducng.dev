@@ -1103,6 +1103,10 @@ video {
   margin-bottom: auto;
 }
 
+.me-2 {
+  margin-inline-end: 0.5rem;
+}
+
 .mr-auto {
   margin-right: auto;
 }
@@ -1461,6 +1465,11 @@ code {
   height: 0px;
   overflow: hidden;
   opacity: 0;
+}
+
+.nav_dropdown .dropdown_body.dropdown_right {
+  left: auto;
+  right: 0px;
 }
 
 .nav_dropdown .dropdown_body .nested_dropdown {

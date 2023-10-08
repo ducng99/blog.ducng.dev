@@ -26,6 +26,10 @@
     @apply transition;
     @apply opacity-0 h-0 overflow-hidden;
 
+    &.dropdown_right {
+      @apply left-auto right-0;
+    }
+
     .nested_dropdown {
       @apply relative;
 
