@@ -14,9 +14,12 @@ $routes->get('/', 'PageController::show/home');
 $routes->group('components', static function (RouteCollection $routes)
 {
     $routes->get('featured_post/(:uuid)', 'Components\FeaturedPostController::show/$1');
+    $routes->get('posts_search', 'PostController::search');
 });
 
 $routes->post('storyblok_load_story', 'StoryblokController::show');
+
+$routes->get('posts', 'PostController::index');
 
 // Catch all pages
 $routes->get('/(:any)', 'PageController::show/$1');

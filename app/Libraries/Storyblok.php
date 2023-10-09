@@ -78,6 +78,7 @@ class Storyblok
         {
             "page" => "page",
             "post" => "post",
+            "posts_search" => "posts_search",
             "grid" => "components/grid",
             "featured_post" => "components/featured_post",
             "rich_body" => "components/rich_body",
@@ -104,6 +105,7 @@ class Storyblok
         {
             "page" => \App\Models\Page::class,
             "post" => \App\Models\Post::class,
+            "posts_search" => \App\Models\PostsSearch::class,
             "grid" => \App\Models\Components\Grid::class,
             "featured_post" => \App\Models\Components\FeaturedPost::class,
             "rich_body" => \App\Models\Components\RichBody::class,
