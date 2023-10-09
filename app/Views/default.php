@@ -31,7 +31,7 @@
         <script src="//app.storyblok.com/f/storyblok-v2-latest.js" type="text/javascript"></script>
     <? endif; ?>
     <script>
-        window.onThemeChange = function() {
+        function onThemeChange() {
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -39,7 +39,16 @@
             }
         }
 
-        window.onThemeChange();
+        onThemeChange();
+
+        function setTheme(theme) {
+            if (theme) {
+                localStorage.theme = theme;
+            } else {
+                localStorage.removeItem('theme');
+            }
+            onThemeChange();
+        }
     </script>
 </head>
 
