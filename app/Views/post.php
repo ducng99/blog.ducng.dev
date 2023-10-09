@@ -37,7 +37,7 @@ echo $this->endSection();
         &lt;posted date=&quot;<?= date('Y-m-d', strtotime($component->created_at)) ?>&quot; time=&quot;<?= date('H:i', strtotime($component->created_at)) ?>&quot; /&gt;
     </div>
 
-    <div class="rounded-md bg-primary dark:bg-neutral-800 text-black dark:text-primary font-serif text-base p-4">
+    <div class="themable rounded-md font-serif text-base p-4">
         <?php
         foreach ($component->body as $nestedComponent)
         {
