@@ -33,9 +33,11 @@ echo $this->endSection();
         <?= esc($story['name']) ?>
     </h1>
 
-    <div class="mb-4">
-        &lt;posted date=&quot;<?= date('Y-m-d', strtotime($component->created_at)) ?>&quot; time=&quot;<?= date('H:i', strtotime($component->created_at)) ?>&quot; /&gt;
-    </div>
+    <? if ($component->show_created_at) : ?>
+        <div class="mb-4">
+            &lt;posted date=&quot;<?= date('Y-m-d', strtotime($component->created_at)) ?>&quot; time=&quot;<?= date('H:i', strtotime($component->created_at)) ?>&quot; /&gt;
+        </div>
+    <? endif; ?>
 
     <div class="themable rounded-md font-serif text-base p-4">
         <?php
