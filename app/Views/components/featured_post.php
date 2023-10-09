@@ -33,13 +33,13 @@
     <?= $component->_editable ?>
     <div class="themable h-64 rounded-md flex flex-col" hx-get="<?= base_url('components/featured_post/' . $component->post) ?>" hx-trigger="revealed" hx-swap="outerHTML" hx-indicator="this">
         <div class="pt-5 px-7 mb-auto">
-            <div class="text-xl mb-6 placeholder-loading bg-gray-300 w-32">&nbsp;</div>
-            <div class="mb-1 placeholder-loading bg-gray-300 w-48">&nbsp;</div>
-            <div class="mb-6 placeholder-loading bg-gray-300 w-64">&nbsp;</div>
+            <div class="text-xl mb-6 placeholder-loading bg-gray-300 w-32"></div>
+            <div class="mb-1 placeholder-loading bg-gray-300 w-48"></div>
+            <div class="mb-6 placeholder-loading bg-gray-300 w-64"></div>
         </div>
         <hr class="dark:border-t-secondary" />
         <div class="text-xs py-3 px-7">
-            <div class="placeholder-loading bg-gray-300 w-28">&nbsp;</div>
+            <div class="placeholder-loading bg-gray-300 w-28"></div>
         </div>
     </div>
 <? endif; ?>
