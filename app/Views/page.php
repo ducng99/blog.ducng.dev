@@ -30,7 +30,7 @@ echo $this->endSection();
 
 <?= $this->section('main') ?>
 <?= $component->_editable ?>
-<div class="lg:container lg:mx-auto lg:max-w-5xl px-4 lg:px-0">
+<div class="my_container">
     <?php
     foreach ($component->body as $nestedComponent)
     {

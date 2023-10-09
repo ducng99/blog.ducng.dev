@@ -6,7 +6,7 @@ use App\Libraries\Storyblok;
 ?>
 
 <?= $component->_editable ?>
-<footer class="lg:container lg:mx-auto lg:max-w-5xl px-4 lg:px-0 mt-8">
+<footer class="my_container mt-8">
     <?php
     foreach ($component->body as $nestedComponent)
     {

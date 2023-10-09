@@ -17,7 +17,7 @@
                 <a href="<?= base_url($story['full_slug']) ?>">&gt; checkout</a>
             </div>
         </div>
-        <hr class="dark:border-t-secondary" />
+        <hr />
         <div class="text-gray-500 text-xs font-serif py-3 px-7">
             <?= date("d F Y", strtotime($component->created_at)) ?>
         </div>
@@ -37,7 +37,7 @@
             <div class="mb-1 placeholder-loading bg-gray-300 w-48"></div>
             <div class="mb-6 placeholder-loading bg-gray-300 w-64"></div>
         </div>
-        <hr class="dark:border-t-secondary" />
+        <hr />
         <div class="text-xs py-3 px-7">
             <div class="placeholder-loading bg-gray-300 w-28"></div>
         </div>

@@ -7,7 +7,7 @@
 
 <?= $component->_editable ?>
 <div class="w-full">
-    <div class="lg:container lg:mx-auto lg:max-w-5xl px-4 lg:px-0 flex items-center py-2" hx-boost="true">
+    <div class="my_container flex items-center py-2" hx-boost="true">
         <a class="flex items-center gap-x-4 mr-auto" href="<?= base_url() ?>" title="Home">
             <? if (!empty($component->logo['filename'])) : ?>
                 <img src="<?= esc($component->logo['filename'], 'attr') ?>" alt="<?= esc($component->logo['alt'], 'attr') ?>" title="<?= esc($component->logo['title'], 'attr') ?>" class="w-16 h-16" />
