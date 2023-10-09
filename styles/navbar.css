@@ -24,7 +24,7 @@
   .dropdown_body {
     @apply absolute left-0 top-full z-10;
     @apply transition;
-    @apply opacity-0 h-0 overflow-hidden;
+    @apply opacity-0 h-0 overflow-hidden min-w-full;
 
     &.dropdown_right {
       @apply left-auto right-0;

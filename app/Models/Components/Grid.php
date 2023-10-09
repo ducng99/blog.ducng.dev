@@ -7,6 +7,8 @@ use App\Models\BaseModel;
 class Grid extends BaseModel
 {
     public int $num_columns = 1;
+    public int $num_columns_mobile = 1;
+
     /** @var array<BaseModel> */
     public array $body = [];
 
