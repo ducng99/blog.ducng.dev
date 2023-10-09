@@ -1,6 +1,6 @@
 <div class="px-5 py-6 nav_dropdown">
     <button class="dropdown_btn">
-        <i class="bi bi-moon-stars-fill"></i>
+        <i id="theme-icon" class="bi bi-moon-stars-fill"></i>
     </button>
     <div class="dropdown_body dropdown_right">
         <button class="dropdown_item w-full text-left" onclick="setTheme('light');">

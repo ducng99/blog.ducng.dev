@@ -32,14 +32,52 @@
     <? endif; ?>
     <script>
         function onThemeChange() {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            if (localStorage.theme === 'dark') {
                 document.documentElement.classList.add('dark');
+                updateThemeIcon('dark');
+            } else if (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                updateThemeIcon('');
             } else {
                 document.documentElement.classList.remove('dark');
+                updateThemeIcon('light');
             }
         }
 
         onThemeChange();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.theme === 'dark') {
+                updateThemeIcon('dark');
+            } else if (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                updateThemeIcon('');
+            } else {
+                updateThemeIcon('light');
+            }
+        });
+
+        function updateThemeIcon(theme) {
+            if (document.body) {
+                let themeIcon = document.body.querySelector('#theme-icon');
+
+                if (themeIcon) {
+                    switch (theme) {
+                        case 'light':
+                            themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                            themeIcon.classList.replace('bi-circle-half', 'bi-brightness-high-fill');
+                            break;
+                        case 'dark':
+                            themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                            themeIcon.classList.replace('bi-circle-half', 'bi-moon-stars-fill');
+                            break;
+                        default:
+                            themeIcon.classList.replace('bi-brightness-high-fill', 'bi-circle-half');
+                            themeIcon.classList.replace('bi-moon-stars-fill', 'bi-circle-half');
+                            break;
+                    }
+                }
+            }
+        }
 
         function setTheme(theme) {
             if (theme) {
