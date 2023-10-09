@@ -7,4 +7,17 @@
     <extraFiles>
         <directory name="vendor" />
     </extraFiles>
+
+    <issueHandlers>
+        <UndefinedFunction>
+            <errorLevel type="suppress">
+                <directory name="app/Views" />
+            </errorLevel>
+        </UndefinedFunction>
+        <InvalidScope>
+            <errorLevel type="suppress">
+                <directory name="app/Views" />
+            </errorLevel>
+        </InvalidScope>
+    </issueHandlers>
 </psalm>
