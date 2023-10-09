@@ -2,6 +2,7 @@ FROM node:lts-alpine as node-builder
 
 WORKDIR /build
 COPY ./styles ./styles
+COPY ./app/Views ./app/Views
 COPY package.json package-lock.json tailwind.config.js postcss.config.js ./
 
 RUN npm install && \
