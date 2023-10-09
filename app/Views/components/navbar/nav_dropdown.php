@@ -3,7 +3,7 @@
 use App\Libraries\Storyblok;
 
 /**
- * @var App\Models\Navbar\NavDropdown $component
+ * @var App\Models\Components\Navbar\NavDropdown $component
  */
 
 $url = Storyblok::getURLFromLink($component->link);

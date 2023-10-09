@@ -23,7 +23,7 @@ class Storyblok
         $this->client->editMode(getenv('CI_ENVIRONMENT') !== 'production');
         $this->client->setCache('filesystem', [
             'path' => config('Cache')->file['storePath'],
-            'default_lifetime' => getenv('CI_ENVIRONMENT') === 'production' ? 21600 : 300,
+            'default_lifetime' => 21600
         ]);
     }
 

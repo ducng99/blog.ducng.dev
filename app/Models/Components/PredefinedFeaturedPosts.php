@@ -23,6 +23,7 @@ class PredefinedFeaturedPosts extends BaseModel
         $storyblok = new Storyblok();
         $stories = $storyblok->client->getStories([
             'starts_with' => 'posts/',
+            'content_type' => 'post',
             'sort_by' => $this->sort_by,
             'per_page' => $this->per_page,
             'with_tag' => $this->with_tag,
