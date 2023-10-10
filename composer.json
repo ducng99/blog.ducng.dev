@@ -1,17 +1,12 @@
 {
     "name": "ducng99/blog",
     "description": "Blog",
-    "license": "Unlicensed",
+    "license": "AGPL-3.0",
     "type": "project",
-    "homepage": "https://codeigniter.com",
-    "support": {
-        "forum": "https://forum.codeigniter.com/",
-        "source": "https://github.com/codeigniter4/CodeIgniter4",
-        "slack": "https://codeigniterchat.slack.com"
-    },
+    "homepage": "https://blog.ducng.dev",
     "require": {
         "php": "^8.0",
-        "codeigniter4/framework": "^4.0",
+        "codeigniter4/framework": "~4.4.0",
         "storyblok/php-client": "^2.6",
         "storyblok/richtext-resolver": "^2.2"
     },
