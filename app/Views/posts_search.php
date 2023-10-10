@@ -30,7 +30,7 @@ echo $this->endSection();
     </h1>
 
     <div>
-        <form action="<?= base_url('posts') ?>" method="get" hx-get="<?= base_url('components/posts_search') ?>" hx-trigger="submit, keyup delay:550ms changed from:#q, change from:#per_page" hx-target="#search-results">
+        <form action="<?= base_url('posts') ?>" method="get" hx-get="<?= base_url('components/posts_search') ?>" hx-trigger="submit, keyup delay:550ms changed from:#q, change from:#per_page" hx-target="#search-results" hx-indicator="#search-loading">
             <div class="flex flex-col md:flex-row gap-2">
                 <div class="flex-grow">
                     <input type="text" name="q" id="q" class="themable text-lg w-full p-2 rounded-md" placeholder="Search..." value="<?= esc($searchParams['q'] ?? '', 'attr') ?>">
@@ -50,13 +50,30 @@ echo $this->endSection();
                 </div>
             </div>
         </form>
-        <div id="search-results" class="grid grid-cols-<?= esc($component->num_columns_mobile, 'attr') ?> md:grid-cols-<?= esc($component->num_columns, 'attr') ?> gap-8 mt-8">
-            <?
-            if (!empty($searchResults))
-            {
-                echo $searchResults;
-            }
-            ?>
+        <div class="relative">
+            <div id="search-results" class="grid grid-cols-<?= esc($component->num_columns_mobile, 'attr') ?> md:grid-cols-<?= esc($component->num_columns, 'attr') ?> gap-8 mt-8">
+                <?
+                if (!empty($searchResults))
+                {
+                    echo $searchResults;
+                }
+                ?>
+            </div>
+            <div class="htmx-indicator absolute top-0 left-0 w-full h-full backdrop-blur-sm flex items-center justify-center" id="search-loading">
+                <div class="text-6xl text-accent hourglass">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <style>
+                #search-loading.htmx-indicator {
+                    display: none;
+                }
+
+                .htmx-request #search-loading.htmx-indicator,
+                .htmx-request#search-loading.htmx-indicator {
+                    display: flex;
+                }
+            </style>
         </div>
     </div>
 </div>
