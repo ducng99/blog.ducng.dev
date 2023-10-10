@@ -6,6 +6,13 @@ use App\Libraries\Storyblok;
 
 class PostController extends BaseController
 {
+    private const SEARCH_PARAMS = [
+        'q' => '',
+        'categories' => [],
+        'per_page' => 4,
+        'page' => 1,
+    ];
+
     public function index(): string
     {
         $story = $this->storyblok->client->getStoryBySlug('posts')->getBody();
@@ -21,42 +28,20 @@ class PostController extends BaseController
             'component' => $componentModel,
             'story' => $story['story'],
             'searchResults' => $searchResults,
-            'searchParams' => $this->request->getGet(),
+            'searchParams' => $this->getSearchParams(),
         ]);
     }
 
     public function search(): string
     {
-        $searchPage = $this->request->getGet('page');
-        if (empty($searchPage))
-        {
-            $searchPage = 1;
-        }
-
-        $searchTerm = $this->request->getGet('q');
-
-        $searchCategories = $this->request->getGet('categories');
-        if (is_array($searchCategories))
-        {
-            $searchCategories = implode(',', $searchCategories);
-        }
-
-        $searchPerPage = $this->request->getGet('per_page');
-        if (empty($searchPerPage))
-        {
-            $searchPerPage = 4;
-        }
-        else if ($searchPerPage > 16)
-        {
-            $searchPerPage = 16;
-        }
+        $searchParams = $this->getSearchParams();
 
         // Push new URL to browser's history using HTMX
         $urlParams = http_build_query([
-            'q' => $searchTerm,
-            'categories' => $searchCategories,
-            'per_page' => $searchPerPage,
-            'page' => $searchPage,
+            'q' => $searchParams['q'],
+            'categories' => $searchParams['categories'],
+            'per_page' => $searchParams['per_page'],
+            'page' => $searchParams['page'],
         ]);
 
         $this->response->setHeader('HX-Push-Url', base_url('posts?' . $urlParams));
@@ -64,14 +49,17 @@ class PostController extends BaseController
         $searchResults = $this->storyblok->client->getStories([
             'starts_with' => 'posts/',
             'content_type' => 'post',
-            'search_term' => $searchTerm,
-            'per_page' => $searchPerPage,
+            'search_term' => $searchParams['q'],
+            'per_page' => $searchParams['per_page'],
+            'page' => $searchParams['page'],
             'filter_query' => [
                 'categories' => [
-                    'any_in_array' => $searchCategories
+                    'any_in_array' => $searchParams['categories'],
                 ]
             ]
         ])->getBody();
+
+        $totalPages = ($this->storyblok->client->responseHeaders['total'] ?? 0) / $searchParams['per_page'];
 
         if (!empty($searchResults['stories']))
         {
@@ -94,5 +82,39 @@ class PostController extends BaseController
         }
 
         return "No posts found.";
+    }
+
+    private function getSearchParams(): array
+    {
+        $searchParams = [];
+        $searchParams['q'] = $this->request->getGet('q');
+        $searchParams['categories'] = $this->request->getGet('categories');
+        $searchParams['per_page'] = $this->request->getGet('per_page');
+        $searchParams['page'] = $this->request->getGet('page');
+
+        if (intval($searchParams['page']) < 1)
+        {
+            $searchPage = self::SEARCH_PARAMS['page'];
+        }
+
+        if (is_array($searchParams['categories']))
+        {
+            $searchParams['categories'] = implode(',', $searchParams['categories']);
+        }
+        else
+        {
+            $searchParams['categories'] = self::SEARCH_PARAMS['categories'];
+        }
+
+        if (intval($searchParams['per_page']) < 1)
+        {
+            $searchParams['per_page'] = self::SEARCH_PARAMS['per_page'];
+        }
+        else
+        {
+            $searchParams['per_page'] = max(1, min(16, $searchParams['per_page']));
+        }
+
+        return $searchParams;
     }
 }
