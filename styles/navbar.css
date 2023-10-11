@@ -1,5 +1,5 @@
 .nav_item {
-  @apply h-full px-5 py-6 text-lg font-bold shadow-accent transition;
+  @apply h-full px-5 py-6 font-bold shadow-accent transition;
 
   &:hover,
   &.active {

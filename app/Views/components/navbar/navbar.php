@@ -12,7 +12,7 @@
             <? if (!empty($component->logo['filename'])) : ?>
                 <img src="<?= esc($component->logo['filename'], 'attr') ?>" alt="<?= esc($component->logo['alt'], 'attr') ?>" title="<?= esc($component->logo['title'], 'attr') ?>" class="w-16 h-16" />
             <? endif; ?>
-            <span class="text-4xl font-bold"><?= esc($component->name) ?></span>
+            <span class="text-3xl font-bold"><?= esc($component->name) ?></span>
         </a>
         <div class="flex gap-2">
             <?

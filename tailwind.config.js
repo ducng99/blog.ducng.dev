@@ -28,7 +28,7 @@ module.exports = {
     },
     fontFamily: {
       'serif': ['Noto Serif', 'serif'],
-      'mono': ['Ubuntu Mono', 'monospace'],
+      'mono': ['Roboto Mono', 'monospace'],
     }
   },
   plugins: [
