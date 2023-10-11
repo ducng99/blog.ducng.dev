@@ -50,8 +50,8 @@ echo $this->endSection();
                 </div>
             </div>
         </form>
-        <div class="relative">
-            <div id="search-results" class="grid grid-cols-<?= esc($component->num_columns_mobile, 'attr') ?> md:grid-cols-<?= esc($component->num_columns, 'attr') ?> gap-8 mt-8">
+        <div class="relative mt-8">
+            <div id="search-results" class="grid grid-cols-<?= esc($component->num_columns_mobile, 'attr') ?> md:grid-cols-<?= esc($component->num_columns, 'attr') ?> gap-8">
                 <?
                 if (!empty($searchResults))
                 {
@@ -65,12 +65,12 @@ echo $this->endSection();
                 </div>
             </div>
             <style>
-                #search-loading.htmx-indicator {
+                #search-loading {
                     display: none;
                 }
 
-                .htmx-request #search-loading.htmx-indicator,
-                .htmx-request#search-loading.htmx-indicator {
+                .htmx-request #search-loading,
+                .htmx-request#search-loading {
                     display: flex;
                 }
             </style>

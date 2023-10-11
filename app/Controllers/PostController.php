@@ -6,7 +6,7 @@ use App\Libraries\Storyblok;
 
 class PostController extends BaseController
 {
-    private const SEARCH_PARAMS = [
+    private const DEFAULT_SEARCH_PARAMS = [
         'q' => '',
         'categories' => [],
         'per_page' => 4,
@@ -59,7 +59,7 @@ class PostController extends BaseController
             ]
         ])->getBody();
 
-        $totalPages = ($this->storyblok->client->responseHeaders['total'] ?? 0) / $searchParams['per_page'];
+        $totalPages = ($this->storyblok->client->getHeaders()['Total'][0] ?? 0) / $searchParams['per_page'];
 
         if (!empty($searchResults['stories']))
         {
@@ -78,12 +78,20 @@ class PostController extends BaseController
                 ]);
             }, $searchResults['stories']);
 
-            return implode('', $searchResults);
+            return implode('', $searchResults)
+                . view('components/posts_search_pagination', [
+                    'searchParams' => $searchParams,
+                    'totalPages' => $totalPages,
+                ]);
         }
 
         return "No posts found.";
     }
 
+    /**
+     * Get search params from GET request
+     * Validate params and set default values if invalid
+     */
     private function getSearchParams(): array
     {
         $searchParams = [];
@@ -94,7 +102,11 @@ class PostController extends BaseController
 
         if (intval($searchParams['page']) < 1)
         {
-            $searchPage = self::SEARCH_PARAMS['page'];
+            $searchParams['page'] = self::DEFAULT_SEARCH_PARAMS['page'];
+        }
+        else
+        {
+            $searchParams['page'] = intval($searchParams['page']);
         }
 
         if (is_array($searchParams['categories']))
@@ -103,12 +115,12 @@ class PostController extends BaseController
         }
         else
         {
-            $searchParams['categories'] = self::SEARCH_PARAMS['categories'];
+            $searchParams['categories'] = self::DEFAULT_SEARCH_PARAMS['categories'];
         }
 
         if (intval($searchParams['per_page']) < 1)
         {
-            $searchParams['per_page'] = self::SEARCH_PARAMS['per_page'];
+            $searchParams['per_page'] = self::DEFAULT_SEARCH_PARAMS['per_page'];
         }
         else
         {
