@@ -19,6 +19,7 @@ $routes->group('components', static function (RouteCollection $routes)
 
 $routes->post('storyblok_load_story', 'StoryblokController::show');
 
+$routes->get('categories/(:any)', 'CategoryController::show/$1');
 $routes->get('posts', 'PostController::index');
 
 // Catch all pages
