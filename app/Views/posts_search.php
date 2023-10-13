@@ -33,13 +33,13 @@ echo $this->endSection();
         <form action="<?= base_url('posts') ?>" method="get" hx-get="<?= base_url('components/posts_search') ?>" hx-trigger="submit, keyup delay:550ms changed from:#q, change from:#per_page" hx-target="#search-results" hx-indicator="#search-loading">
             <div class="flex flex-col md:flex-row gap-2">
                 <div class="flex-grow">
-                    <input type="text" name="q" id="q" class="themable text-lg w-full p-2 rounded-md" placeholder="Search..." value="<?= esc($searchParams['q'], 'attr') ?>">
+                    <input type="text" name="q" id="q" class="themable text-lg w-full px-4 py-2 rounded-md" placeholder="Search..." value="<?= esc($searchParams['q'], 'attr') ?>">
                 </div>
                 <div class="flex-grow-0">
-                    <button type="submit" class="w-full md:w-auto h-full p-2 rounded-md bg-accent text-black font-bold"><i class="bi bi-search me-1"></i>Search</button>
+                    <button type="submit" class="w-full md:w-auto h-full px-4 py-2 rounded-md bg-accent text-black font-bold"><i class="bi bi-search me-1"></i>Search</button>
                 </div>
                 <div class="flex-grow-0">
-                    <select name="per_page" id="per_page" class="themable w-full md:w-auto h-full p-2 rounded-md">
+                    <select name="per_page" id="per_page" class="themable w-full md:w-auto h-full px-4 py-2 rounded-md">
                         <?
                         $perPageOptions = [4, 8, 12, 16];
                         foreach ($perPageOptions as $perPageOption) :

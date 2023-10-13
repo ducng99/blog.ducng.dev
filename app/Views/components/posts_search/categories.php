@@ -14,7 +14,7 @@ function generateOptions(array $categories, array $searchParams, int $level = 0)
 {
     foreach ($categories as $category) :
 ?>
-        <option value="<?= esc($category['item']['uuid'], 'attr') ?>" <?= in_array($category['item']['uuid'], $searchParams['categories']) ? 'selected' : '' ?>>
+        <option class="px-4" value="<?= esc($category['item']['uuid'], 'attr') ?>" <?= in_array($category['item']['uuid'], $searchParams['categories']) ? 'selected' : '' ?>>
             <?= str_repeat('--', $level) . esc($category['item']['name']) ?>
         </option>
 <?
@@ -31,7 +31,7 @@ function generateOptions(array $categories, array $searchParams, int $level = 0)
         <i class="bi bi-chevron-right ms-auto transition-transform" id="categories-label-icon"></i>
     </label>
     <div class="rounded-md overflow-hidden transition-all max-h-0" id="categories-select">
-        <select class="themable px-4 py-2 w-full h-64" multiple="multiple" name="categories[]">
+        <select class="themable py-2 w-full h-64" multiple="multiple" name="categories[]">
             <? generateOptions($categories, $searchParams) ?>
         </select>
     </div>
