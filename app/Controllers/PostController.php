@@ -9,7 +9,7 @@ class PostController extends BaseController
     private const DEFAULT_SEARCH_PARAMS = [
         'q' => '',
         'categories' => [],
-        'per_page' => 4,
+        'per_page' => 8,
         'page' => 1,
     ];
 
@@ -22,11 +22,13 @@ class PostController extends BaseController
         $componentModel = new $componentModelClass($component);
 
         $viewName = Storyblok::getViewFromComponent($component['component']);
+        $categories = $this->getCategories();
         $searchResults = $this->search();
 
         return view($viewName, [
             'component' => $componentModel,
             'story' => $story['story'],
+            'categories' => $categories,
             'searchResults' => $searchResults,
             'searchParams' => $this->getSearchParams(),
         ]);
@@ -46,18 +48,27 @@ class PostController extends BaseController
 
         $this->response->setHeader('HX-Push-Url', base_url('posts?' . $urlParams));
 
-        $searchResults = $this->storyblok->client->getStories([
+        $storyblokParams = [
             'starts_with' => 'posts/',
             'content_type' => 'post',
             'search_term' => $searchParams['q'],
             'per_page' => $searchParams['per_page'],
             'page' => $searchParams['page'],
-            'filter_query' => [
+        ];
+
+        if (count($searchParams['categories']) > 0)
+        {
+            $storyblokParams['filter_query'] = [
                 'categories' => [
-                    'any_in_array' => $searchParams['categories'],
-                ]
-            ]
-        ])->getBody();
+                    'any_in_array' => implode(',', array_map(function (string $uuid)
+                    {
+                        return esc($uuid, 'url');
+                    }, $searchParams['categories'])),
+                ],
+            ];
+        }
+
+        $searchResults = $this->storyblok->client->getStories($storyblokParams)->getBody();
 
         $totalPages = ($this->storyblok->client->getHeaders()['Total'][0] ?? 0) / $searchParams['per_page'];
 
@@ -79,7 +90,7 @@ class PostController extends BaseController
             }, $searchResults['stories']);
 
             return implode('', $searchResults)
-                . view('components/posts_search_pagination', [
+                . view('components/posts_search/pagination', [
                     'searchParams' => $searchParams,
                     'totalPages' => $totalPages,
                 ]);
@@ -109,11 +120,7 @@ class PostController extends BaseController
             $searchParams['page'] = intval($searchParams['page']);
         }
 
-        if (is_array($searchParams['categories']))
-        {
-            $searchParams['categories'] = implode(',', $searchParams['categories']);
-        }
-        else
+        if (!is_array($searchParams['categories']))
         {
             $searchParams['categories'] = self::DEFAULT_SEARCH_PARAMS['categories'];
         }
@@ -128,5 +135,49 @@ class PostController extends BaseController
         }
 
         return $searchParams;
+    }
+
+    private function getCategories(): mixed
+    {
+        $categoriesLink = $this->storyblok->client->getLinks([
+            'starts_with' => 'categories/',
+        ])->getBody();
+
+        $removed_ids = [];
+        $categories = [];
+
+        function processCategory(array &$categoriesLinks, array &$removed_ids, int $parent_id = 0)
+        {
+            $ret_categories = [];
+
+            foreach ($categoriesLinks as &$category)
+            {
+                if (!in_array($category['id'], $removed_ids) && ($parent_id == 0 || $category['parent_id'] === $parent_id))
+                {
+                    if ($parent_id > 0)
+                    {
+                        $removed_ids[] = $category['id'];
+                    }
+
+                    $ret_categories[$category['id']] = [
+                        'item' => $category,
+                        'children' => processCategory($categoriesLinks, $removed_ids, $category['id']),
+                    ];
+                }
+            }
+
+            unset($category);
+
+            return $ret_categories;
+        }
+
+        $categories = processCategory($categoriesLink['links'], $removed_ids);
+        // Filter out categories which key is in $removed_ids
+        $categories = array_filter($categories, function ($key) use ($removed_ids)
+        {
+            return !in_array($key, $removed_ids);
+        }, ARRAY_FILTER_USE_KEY);
+
+        return $categories;
     }
 }
