@@ -146,7 +146,7 @@ class PostController extends BaseController
         $removed_ids = [];
         $categories = [];
 
-        function processCategory(array &$categoriesLinks, array &$removed_ids, int $parent_id = 0)
+        function processCategory(array $categoriesLinks, array &$removed_ids, int $parent_id = 0)
         {
             $ret_categories = [];
 
@@ -172,7 +172,7 @@ class PostController extends BaseController
         }
 
         $categories = processCategory($categoriesLink['links'], $removed_ids);
-        // Filter out categories which key is in $removed_ids
+        // Filter out top-level categories which key is in $removed_ids
         $categories = array_filter($categories, function ($key) use ($removed_ids)
         {
             return !in_array($key, $removed_ids);
