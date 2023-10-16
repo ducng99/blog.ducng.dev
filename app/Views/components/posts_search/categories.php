@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @var array $categories
- * @var array $searchParams
- */
-
-/**
  * @param array $categories
  * @param int $level
  * @return void
@@ -28,6 +23,11 @@ function generateOptions(array $categories, array $searchParams, int $level = 0)
         endif;
     endforeach;
 }
+
+/**
+ * @var array $categories
+ * @var array $searchParams
+ */
 ?>
 <div class="mt-2">
     <input type="checkbox" class="hidden" id="categories-checkbox" />
