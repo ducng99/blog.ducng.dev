@@ -14,7 +14,7 @@ function generateOptions(array $categories, array $searchParams, int $level = 0)
 {
     foreach ($categories as $category) :
 ?>
-        <div class="px-4 hover:bg-secondary">
+        <div class="px-4 hover:bg-neutral-300 hover:dark:bg-secondary">
             <div class="flex gap-2" style="margin-left: calc(1em * <?= esc($level, 'attr') ?>)">
                 <input id="checkbox_<?= esc($category['item']['uuid'], 'attr') ?>" name="categories[]" type="checkbox" value="<?= esc($category['item']['uuid'], 'attr') ?>" <?= in_array($category['item']['uuid'], $searchParams['categories']) ? 'checked' : '' ?> />
                 <label for="checkbox_<?= esc($category['item']['uuid'], 'attr') ?>" class="grow cursor-pointer">
