@@ -14,9 +14,14 @@ function generateOptions(array $categories, array $searchParams, int $level = 0)
 {
     foreach ($categories as $category) :
 ?>
-        <option class="px-4" value="<?= esc($category['item']['uuid'], 'attr') ?>" <?= in_array($category['item']['uuid'], $searchParams['categories']) ? 'selected' : '' ?>>
-            <?= str_repeat('--', $level) . esc($category['item']['name']) ?>
-        </option>
+        <div class="px-4 hover:bg-secondary">
+            <div class="flex gap-2" style="margin-left: calc(1em * <?= esc($level, 'attr') ?>)">
+                <input id="checkbox_<?= esc($category['item']['uuid'], 'attr') ?>" name="categories[]" type="checkbox" value="<?= esc($category['item']['uuid'], 'attr') ?>" <?= in_array($category['item']['uuid'], $searchParams['categories']) ? 'checked' : '' ?> />
+                <label for="checkbox_<?= esc($category['item']['uuid'], 'attr') ?>" class="grow cursor-pointer">
+                    <?= esc($category['item']['name']) ?>
+                </label>
+            </div>
+        </div>
 <?
         if (!empty($category['children'])) :
             generateOptions($category['children'], $searchParams, $level + 1);
@@ -30,10 +35,10 @@ function generateOptions(array $categories, array $searchParams, int $level = 0)
         Categories
         <i class="bi bi-chevron-right ms-auto transition-transform" id="categories-label-icon"></i>
     </label>
-    <div class="rounded-md overflow-hidden transition-all max-h-0" id="categories-select">
-        <select class="themable py-2 w-full h-64" multiple="multiple" name="categories[]">
+    <div class="themable rounded-md overflow-hidden transition-all max-h-0" id="categories-select">
+        <div class="max-h-64 py-2 overflow-y-auto">
             <? generateOptions($categories, $searchParams) ?>
-        </select>
+        </div>
     </div>
 
     <style>
