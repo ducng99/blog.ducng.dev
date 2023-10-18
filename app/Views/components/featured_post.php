@@ -8,11 +8,11 @@
     ?>
     <?= $component->_editable ?>
     <div class="themable h-64 rounded-md flex flex-col" hx-boost="true">
-        <div class="pt-5 px-7 mb-auto">
+        <div class="pt-5 px-7 min-h-0 mb-auto">
             <div class="text-xl text-anchor dark:text-accent font-bold mb-6">
                 <a href="<?= base_url($story['full_slug']) ?>"><?= esc($story['name']) ?></a>
             </div>
-            <div class="font-serif text-ellipsis overflow-hidden"><?= esc($component->summary) ?></div>
+            <div class="font-serif text-ellipsis line-clamp-3"><?= esc($component->summary) ?></div>
             <div class="text-anchor dark:text-accent text-sm mt-6">
                 <a href="<?= base_url($story['full_slug']) ?>">&gt; checkout</a>
             </div>
