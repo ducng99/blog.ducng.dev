@@ -46,13 +46,24 @@
 
         onThemeChange();
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function onPageUpdated() {
             if (localStorage.theme === 'dark') {
                 updateThemeIcon('dark');
             } else if (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 updateThemeIcon('');
             } else {
                 updateThemeIcon('light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            onPageUpdated();
+        });
+
+        window.addEventListener('htmx:afterSwap', function(event) {
+            const boosted = event.detail.requestConfig.boosted;
+            if (boosted) {
+                onPageUpdated();
             }
         });
 
