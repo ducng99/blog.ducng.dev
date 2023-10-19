@@ -4,7 +4,7 @@ use App\Libraries\Storyblok;
 
 /**
  * This file is included by nav_dropdown.php which passthrough the component
- * @var App\Models\Navbar\NavDropdown $component
+ * @var App\Models\Components\Navbar\NavDropdown $component
  */
 ?>
 <div class="dropdown_body">
@@ -13,7 +13,7 @@ use App\Libraries\Storyblok;
         switch ($dropdown_item->component):
             case "nav_link":
                 /**
-                 * @var App\Models\Navbar\NavLink $dropdown_item
+                 * @var App\Models\Components\Navbar\NavLink $dropdown_item
                  */
                 $url = Storyblok::getURLFromLink($dropdown_item->link);
     ?>
@@ -27,7 +27,7 @@ use App\Libraries\Storyblok;
                 break;
             case "nav_dropdown":
                 /**
-                 * @var App\Models\Navbar\NavDropdown $dropdown_item
+                 * @var App\Models\Components\Navbar\NavDropdown $dropdown_item
                  */
                 $url = Storyblok::getURLFromLink($dropdown_item->link);
             ?>
