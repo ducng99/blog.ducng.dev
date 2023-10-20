@@ -25,7 +25,7 @@ echo $this->endSection();
 <?= $this->section('main') ?>
 <?= $component->_editable ?>
 <div class="my_container">
-    <h1 class="text-7xl font-bold text-center my-24">
+    <h1 class="text-4xl lg:text-7xl font-bold text-center my-12 lg:my-24 break-words">
         <?= esc($story['name']) ?>
     </h1>
 
