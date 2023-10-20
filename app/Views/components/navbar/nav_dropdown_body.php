@@ -33,11 +33,15 @@ use App\Libraries\Storyblok;
             ?>
                 <?= $dropdown_item->_editable ?>
                 <div class="nested_dropdown">
-                    <a href="<?= esc($url, 'attr') ?>">
+                    <? if (!empty($url)) : ?>
+                        <a href="<?= esc($url, 'attr') ?>">
+                        <? endif; ?>
                         <div class="dropdown_item">
                             <?= esc($dropdown_item->name) ?>
                         </div>
-                    </a>
+                        <? if (!empty($url)) : ?>
+                        </a>
+                    <? endif; ?>
                     <?= view('components/navbar/nav_dropdown_body', ['component' => $dropdown_item]) ?>
                 </div>
     <?

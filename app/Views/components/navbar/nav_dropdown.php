@@ -12,10 +12,14 @@ $active = base_url(uri_string()) == $url ? 'active' : '';
 
 <?= $component->_editable ?>
 <div class="nav_dropdown">
-    <a href="<?= esc($url, 'attr') ?>">
+    <? if (!empty($url)) : ?>
+        <a href="<?= esc($url, 'attr') ?>">
+        <? endif; ?>
         <div class="nav_item <?= $active ?> dropdown_btn">
             <?= esc($component->name) ?>
         </div>
-    </a>
+        <? if (!empty($url)) : ?>
+        </a>
+    <? endif; ?>
     <?= $this->include('components/navbar/nav_dropdown_body'); ?>
 </div>
