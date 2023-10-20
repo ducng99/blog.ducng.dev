@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Libraries\Storyblok;
+use CodeIgniter\HTTP\ResponseInterface;
 
 class StoryblokController extends BaseController
 {
@@ -31,5 +32,18 @@ class StoryblokController extends BaseController
         }
 
         return view('empty');
+    }
+
+    public function clearCache(): ResponseInterface
+    {
+        $slug = $this->request->getVar('full_slug');
+
+        if (!empty($slug))
+        {
+            $this->storyblok->client->deleteCacheBySlug($slug);
+            return $this->response->setStatusCode(200);
+        }
+
+        return $this->response->setStatusCode(400);
     }
 }

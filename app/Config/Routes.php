@@ -18,6 +18,7 @@ $routes->group('components', static function (RouteCollection $routes)
 });
 
 $routes->post('storyblok_load_story', 'StoryblokController::show');
+$routes->post('storyblok_clear_cache', 'StoryblokController::clearCache');
 
 $routes->get('categories/(:any)', 'CategoryController::show/$1');
 $routes->get('posts', 'PostController::index');
