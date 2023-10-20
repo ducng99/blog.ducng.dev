@@ -1,62 +1,118 @@
-.nav_item {
-  @apply h-full px-5 py-6 font-bold shadow-accent transition;
+@layer components {
+  .nav_item {
+    @apply h-full px-5 py-6 font-bold shadow-accent transition;
 
-  &:hover,
-  &.active {
-    @apply text-accent;
-    box-shadow: inset 0 -5px 0 0 var(--tw-shadow-color);
-  }
-}
-
-.nav_dropdown {
-  @apply relative;
-
-  .dropdown_btn {
-    @apply flex items-center gap-2;
-
-    &::after {
-      content: "\F282";
-      font-family: bootstrap-icons !important;
-      font-size: 0.8em;
+    &:hover,
+    &:focus-within,
+    &.active {
+      @apply text-accent;
+      box-shadow: inset 0 -5px 0 0 var(--tw-shadow-color);
     }
   }
 
-  .dropdown_body {
-    @apply absolute left-0 top-full z-10;
-    @apply transition;
-    @apply opacity-0 h-0 overflow-hidden min-w-full;
+  .nav_dropdown {
+    @apply relative;
 
-    &.dropdown_right {
-      @apply left-auto right-0;
+    .dropdown_btn {
+      @apply flex items-center gap-2;
+
+      &::after {
+        content: "\F282";
+        font-family: bootstrap-icons !important;
+        font-size: 0.8em;
+      }
     }
 
-    .nested_dropdown {
-      @apply relative;
+    .dropdown_body {
+      @apply absolute left-0 top-full z-10;
+      @apply transition;
+      @apply opacity-0 h-0 overflow-hidden min-w-full;
 
-      /* I hate this */
-      > * > .dropdown_item {
-        @apply flex items-center gap-2;
+      &.dropdown_right {
+        @apply left-auto right-0;
+      }
 
-        &::after {
-          content: "\F282";
-          font-family: bootstrap-icons !important;
-          font-size: 0.8em;
-          transform: rotate(-90deg);
+      .nested_dropdown {
+        @apply relative;
+
+        /* I hate this */
+        > * > .dropdown_item {
+          @apply flex items-center gap-2;
+
+          &::after {
+            content: "\F282";
+            font-family: bootstrap-icons !important;
+            font-size: 0.8em;
+            transform: rotate(-90deg);
+          }
+        }
+
+        > .dropdown_body {
+          @apply inline-block top-0 left-full;
         }
       }
 
-      > .dropdown_body {
-        @apply inline-block top-0 left-full;
+      .dropdown_item {
+        @apply bg-emerald-900 text-primary hover:text-accent active:text-accent max-lg:focus:text-accent font-normal whitespace-nowrap px-5 py-2;
       }
     }
 
-    .dropdown_item {
-      @apply bg-emerald-900 text-primary hover:text-accent font-normal whitespace-nowrap px-5 py-2;
+    &:hover > .dropdown_body,
+    &:focus-within > .dropdown_body,
+    & .dropdown_body .nested_dropdown:focus-within .dropdown_body:first-of-type,
+    & .dropdown_body .nested_dropdown:hover .dropdown_body:first-of-type {
+      @apply opacity-100 h-full overflow-visible;
     }
   }
 
-  &:hover > .dropdown_body,
-  & .dropdown_body .nested_dropdown:hover .dropdown_body:first-of-type {
-    @apply opacity-100 h-full overflow-visible;
+  #mobile_nav_toggle {
+    &:checked ~ .mobile_nav_container {
+      @apply ms-0;
+    }
+
+    :is(html, body):has(&:checked) {
+      overflow: hidden;
+    }
+  }
+
+  .mobile_nav_container {
+    @apply fixed left-0 top-0 w-screen h-screen bg-secondary py-4 z-10;
+    @apply ms-[-100vw];
+    @apply transition-all;
+
+    .mobile_nav_dropdown {
+      .dropdown_body {
+        @apply overflow-hidden h-0 bg-emerald-900 text-primary font-normal whitespace-nowrap ps-4;
+
+        .dropdown_item {
+          @apply bg-emerald-900 text-primary hover:text-accent focus:text-accent font-normal whitespace-nowrap px-4 py-2;
+        }
+      }
+
+      .dropdown_icon {
+        @apply transition-transform;
+      }
+
+      .dropdown_toggle {
+        &:checked ~ .dropdown_body {
+          @apply h-auto;
+        }
+
+        &:checked ~ label > .dropdown_icon {
+          @apply rotate-90;
+        }
+      }
+    }
+  }
+
+  .mobile_nav_item {
+    @apply flex items-center px-4 py-2 font-bold shadow-accent transition;
+
+    &:hover,
+    &:focus-within,
+    &.active {
+      @apply text-accent;
+      box-shadow: inset 5px 0 0 0 var(--tw-shadow-color);
+    }
   }
 }

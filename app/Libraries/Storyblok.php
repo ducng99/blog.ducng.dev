@@ -127,7 +127,12 @@ class Storyblok
      */
     public static function getURLFromLink(array $link): string
     {
-        if (!isset($link['linktype']))
+        if (
+            !isset($link['linktype']) ||
+            ($link['linktype'] === 'url' && empty($link['url'])) ||
+            ($link['linktype'] === 'story' && empty($link['cached_url'])) ||
+            ($link['linktype'] === 'email' && empty($link['email']))
+        )
         {
             return '';
         }

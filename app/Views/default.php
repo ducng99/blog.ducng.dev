@@ -69,9 +69,9 @@
 
         function updateThemeIcon(theme) {
             if (document.body) {
-                let themeIcon = document.body.querySelector('#theme-icon');
+                let themeIcon = document.body.querySelectorAll('.theme-icon');
 
-                if (themeIcon) {
+                themeIcon.forEach(function(themeIcon) {
                     switch (theme) {
                         case 'light':
                             themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
@@ -86,7 +86,7 @@
                             themeIcon.classList.replace('bi-moon-stars-fill', 'bi-circle-half');
                             break;
                     }
-                }
+                });
             }
         }
 

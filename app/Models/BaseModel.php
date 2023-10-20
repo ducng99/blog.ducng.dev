@@ -8,6 +8,11 @@ use stdClass;
 class BaseModel extends stdClass
 {
     /**
+     * The Storyblok UID
+     */
+    public string $_uid = '';
+
+    /**
      * The component name
      */
     public string $component = '';
