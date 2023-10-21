@@ -36,8 +36,9 @@
         @apply relative;
 
         /* I hate this */
-        > * > .dropdown_item {
-          @apply flex items-center gap-2;
+        > .dropdown_item,
+        > :not(.nested_dropdown) > .dropdown_item {
+          @apply flex items-center gap-2 cursor-pointer;
 
           &::after {
             content: "\F282";
@@ -59,8 +60,8 @@
 
     &:hover > .dropdown_body,
     &:focus-within > .dropdown_body,
-    & .dropdown_body .nested_dropdown:focus-within .dropdown_body:first-of-type,
-    & .dropdown_body .nested_dropdown:hover .dropdown_body:first-of-type {
+    .nested_dropdown:focus-within > .dropdown_body,
+    .nested_dropdown:hover > .dropdown_body {
       @apply opacity-100 h-full overflow-visible;
     }
   }
