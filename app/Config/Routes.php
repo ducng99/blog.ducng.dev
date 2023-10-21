@@ -1,5 +1,6 @@
 <?php
 
+use CodeIgniter\HTTP\Response;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -25,3 +26,11 @@ $routes->get('posts', 'PostController::index');
 
 // Catch all pages
 $routes->get('/(:any)', 'PageController::show/$1');
+$routes->options('(:any)', static function ()
+{
+    $response = new Response(config('App'));
+    return $response->setHeader('Access-Control-Allow-Origin', base_url())
+        ->setHeader('Access-Control-Allow-Headers', '*')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        ->setHeader('Access-Control-Max-Age', '86400');
+});
