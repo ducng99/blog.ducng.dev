@@ -826,23 +826,23 @@
         },
         {
             "name": "storyblok/php-client",
-            "version": "v2.6.2",
+            "version": "v2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/storyblok/storyblok-php-client.git",
-                "reference": "25ab14dd0b3c97dcf57943415e4eec8b0a9705e9"
+                "reference": "ebbade20e8e61fdeccfbebb10f9013f4f5124c59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/storyblok/storyblok-php-client/zipball/25ab14dd0b3c97dcf57943415e4eec8b0a9705e9",
-                "reference": "25ab14dd0b3c97dcf57943415e4eec8b0a9705e9",
+                "url": "https://api.github.com/repos/storyblok/storyblok-php-client/zipball/ebbade20e8e61fdeccfbebb10f9013f4f5124c59",
+                "reference": "ebbade20e8e61fdeccfbebb10f9013f4f5124c59",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^7.4",
                 "php": ">=7.3.0",
-                "symfony/cache": "^4.0|^5.0|^6.0"
+                "symfony/cache": "^4.0|^5.0|^6.0|^7.0"
             },
             "provide": {
                 "psr/simple-cache-implementation": "1.0|2.0|3.0"
@@ -850,7 +850,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.4.0",
                 "pestphp/pest": "1.21.2",
-                "phpstan/phpstan": "1.9.x-dev"
+                "phpstan/phpstan": "^1.10.59"
             },
             "type": "library",
             "autoload": {
@@ -881,9 +881,9 @@
             ],
             "support": {
                 "issues": "https://github.com/storyblok/storyblok-php-client/issues",
-                "source": "https://github.com/storyblok/storyblok-php-client/tree/v2.6.2"
+                "source": "https://github.com/storyblok/storyblok-php-client/tree/v2.6.3"
             },
-            "time": "2023-12-08T14:17:41+00:00"
+            "time": "2024-03-15T17:58:57+00:00"
         },
         {
             "name": "storyblok/richtext-resolver",
@@ -938,16 +938,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v6.4.2",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "14a75869bbb41cb35bc5d9d322473928c6f3f978"
+                "reference": "0ef36534694c572ff526d91c7181f3edede176e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/14a75869bbb41cb35bc5d9d322473928c6f3f978",
-                "reference": "14a75869bbb41cb35bc5d9d322473928c6f3f978",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/0ef36534694c572ff526d91c7181f3edede176e7",
+                "reference": "0ef36534694c572ff526d91c7181f3edede176e7",
                 "shasum": ""
             },
             "require": {
@@ -1014,7 +1014,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v6.4.2"
+                "source": "https://github.com/symfony/cache/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -1030,7 +1030,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-29T15:34:34+00:00"
+            "time": "2024-02-22T20:27:10+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -1259,16 +1259,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v6.4.2",
+            "version": "v6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "5fe9a0021b8d35e67d914716ec8de50716a68e7e"
+                "reference": "0bd342e24aef49fc82a21bd4eedd3e665d177e5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/5fe9a0021b8d35e67d914716ec8de50716a68e7e",
-                "reference": "5fe9a0021b8d35e67d914716ec8de50716a68e7e",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/0bd342e24aef49fc82a21bd4eedd3e665d177e5b",
+                "reference": "0bd342e24aef49fc82a21bd4eedd3e665d177e5b",
                 "shasum": ""
             },
             "require": {
@@ -1314,7 +1314,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v6.4.2"
+                "source": "https://github.com/symfony/var-exporter/tree/v6.4.4"
             },
             "funding": [
                 {
@@ -1330,7 +1330,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-27T08:18:35+00:00"
+            "time": "2024-02-26T08:37:45+00:00"
         }
     ],
     "packages-dev": [],
