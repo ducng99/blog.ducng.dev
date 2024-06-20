@@ -22,7 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
 
     <link href="<?= base_url("assets/css/styles.css") ?>" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0"></script>
 
     <?
     // Storyblok Bridge
