@@ -1,12 +1,12 @@
-FROM oven/bun:1.0-alpine as js-builder
+FROM node:lts as js-builder
 
 WORKDIR /build
 COPY ./styles ./styles
 COPY ./app/Views ./app/Views
-COPY package.json bun.lockb tailwind.config.js postcss.config.js ./
+COPY package.json package-lock.json tailwind.config.js postcss.config.js ./
 
-RUN bun install && \
-    bunx tailwindcss -i ./styles/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js
+RUN npm install && \
+    npx tailwindcss -i ./styles/tailwind.css -o /dist/styles.css --postcss ./postcss.config.js
 
 FROM composer:2 AS php-builder
 
